@@ -9,10 +9,13 @@ export default function MyTabBar({ state, descriptors, navigation }) {
       style={{
         flexDirection: "row",
         backgroundColor: "#3d94a3",
-        height: 50,
+        height: 60,
         borderRadius: 50,
         justifyContent: "center",
         alignItems: "center",
+        marginBottom:8,
+        marginLeft:10,
+        marginRight:10
       }}
     >
       {state.routes.map((route, index) => {
@@ -54,9 +57,13 @@ export default function MyTabBar({ state, descriptors, navigation }) {
             onLongPress={onLongPress}
             style={{ flex: 1, alignItems: "center" }}
           >
-            <Text style={{ color: isFocused ? "#673ab7" : "#222" }}>
-              {label}
-            </Text>
+            {isFocused ? (
+              <View style={{ backgroundColor: "#ffffff", padding: 10, borderRadius: 20 }}>
+                <Text style={{ color: "#3d94a3" }}>{label}</Text>
+              </View>
+            ) : (
+              <Text style={{ color: "#ffffff" }}>{label}</Text>
+            )}
           </TouchableOpacity>
         );
       })}

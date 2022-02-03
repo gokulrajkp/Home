@@ -1,98 +1,63 @@
-import {
-  SafeAreaView,
-  StyleSheet,
-  Image,
-  Text,
-  View,
-  Dimensions,
-} from "react-native";
+import { SafeAreaView, StyleSheet, Image, Text, View, FlatList, TouchableOpacity } from "react-native";
 import React from "react";
-import MaterialIcon from "react-native-vector-icons/MaterialCommunityIcons";
 
-export default function Chat() {
-  const { width, height } = Dimensions.get("screen");
+export default function Chat({ navigation }) {
+  const data = [
+    {
+      id: 1,
+      profile_image: require("../assests/profile_pic.jpeg"),
+      name: "Amma Watson",
+      message: "Hi Victor! I am Jacob Jones",
+    },
+    { id: 2, profile_image: require("../assests/profile_pic.jpeg"), name: "Ajin", message: "haiiii" },
+    { id: 3, profile_image: require("../assests/profile_pic.jpeg"), name: "Ajin", message: "haiiii" },
+  ];
+  const renderItem = (item) => {
+    console.log(item);
+    return (
+      <TouchableOpacity
+        onPress={() => navigation.navigate("MessageScreen")}
+        style={{ paddingTop: 10, paddingBottom: 10 }}
+      >
+        <View style={styles.main_body}>
+          <Image source={item.item.profile_image} style={{ width: 60, height: 60, borderRadius: 30 }} />
+
+          <View>
+            <Text style={{ fontWeight: "bold", fontSize: 16, marginLeft: 10 }}>{item.item.name}</Text>
+            <Text style={{ color: "gray", marginLeft: 10 }}>{item.item.message}</Text>
+          </View>
+        </View>
+      </TouchableOpacity>
+    );
+  };
   return (
     <SafeAreaView>
-      <View style={{}}>
-        <View
-          style={{
-            backgroundColor: "#3d94a3",
-            flexDirection: "row",
-            justifyContent: "space-between",
-            alignItems: "center",
-          }}
-        >
-          <View style={{ flexDirection: "row", alignItems: "center" }}>
-            <MaterialIcon name="arrow-left" color={"#ffffff"} size={22} />
-            <Image
-              source={require("../assests/profile_pic.jpeg")}
-              style={{ width: 50, height: 50, borderRadius: 25 }}
-            />
-          </View>
-          <View style={{ flexDirection: "row" }}>
-            <MaterialIcon
-              name="phone-in-talk-outline"
-              color={"#ffffff"}
-              size={22}
-            />
-            <MaterialIcon name="video" color={"#ffffff"} size={22} />
-          </View>
-        </View>
-        <View style={{ backgroundColor: "#3d94a3", height: 30 }}></View>
-        <View
-          style={{
-            backgroundColor: "#ffffff",
-            marginTop: -20,
-            borderRadius: 20,
-            height: 200,
-          }}
-        >
-          <View
-            style={{
-              marginLeft: 20,
-              marginTop: 10,
-              flexDirection: "row",
-              backgroundColor: "green",
-            }}
-          >
-            <View>
-              <Image
-                source={require("../assests/profile_pic.jpeg")}
-                style={{
-                  width: 50,
-                  height: 50,
-                  borderRadius: 25,
-                  borderWidth: 2,
-                  borderColor: "#3d94a3",
-                }}
-              />
-            </View>
-            <View
-              style={{
-                backgroundColor: "red",
-                borderTopEndRadius: 20,
-                borderBottomEndRadius: 20,
-                borderBottomStartRadius: 20,
-                marginLeft: 10,
-                paddingLeft: 20,
-                paddingTop: 4,
-                paddingBottom: 4,
-                marginRight: 30,
-                paddingRight: 20,
-
-                flexGrow: 1,
-              }}
-            >
-              <Text style={{}}>
-                Hi Victor I am Jacob Jonesddddddddddddd
-                dddddddddddddddddddddddddddddddddddddddssssssssssssssssssssssssssssssssssssssssssssssssssssdddddd
-              </Text>
-            </View>
-          </View>
-        </View>
+      <View>
+        <FlatList data={data} keyExtractor={(item) => item.id} renderItem={(item) => renderItem(item)} />
       </View>
     </SafeAreaView>
   );
 }
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  main_body: {
+    flexDirection: "row",
+    marginLeft: 10,
+    marginRight: 10,
+    paddingLeft: 15,
+    paddingRight: 15,
+    paddingTop: 10,
+    paddingBottom: 10,
+    borderRadius: 10,
+    backgroundColor: "#ffffff",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 1,
+    },
+    shadowOpacity: 0.2,
+    shadowRadius: 1.41,
+
+    elevation: 2,
+  },
+});

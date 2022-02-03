@@ -6,13 +6,14 @@ import Chat from "./src/screens/Chat";
 
 import { NavigationContainer } from "@react-navigation/native";
 import TabNavigation from "./src/navigation/TabNavigation";
+import MainStack from "./src/navigation/MainStack";
 
 export default function App() {
   return (
-    <Chat />
-    // <NavigationContainer>
-    //   <TabNavigation />
-    // </NavigationContainer>
+    // <Chat />
+    <NavigationContainer >
+      <MainStack  />
+    </NavigationContainer>
   );
 }
 

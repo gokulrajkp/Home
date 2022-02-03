@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet } from "react-native";
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Home from "../screens/Home";
@@ -12,18 +12,12 @@ const Tab = createBottomTabNavigator();
 
 export default function TabNavigation() {
   return (
-    <Tab.Navigator
-      tabBar={(props) => <MyTabBar {...props} />}
-      screenOptions={{ headerShown: false }}
-    >
+    <Tab.Navigator tabBar={(props, icons) => <MyTabBar {...props} />} screenOptions={{ headerShown: false }}>
       <Tab.Screen
         options={{
           tabBarLabel: "Home",
           tabBarIcon: ({ focused, color }) => {
-            <MaterialIcon
-              name="home"
-              color={focused ? "#3d94a3" : "#ffffff"}
-            />;
+            <MaterialIcon name="home" color={focused ? "#3d94a3" : "#ffffff"} />;
           },
         }}
         name="Home"
